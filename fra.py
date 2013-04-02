@@ -51,6 +51,6 @@ class Data:
         potential = pp.potential()
 
 b = Data()
-b.setData(r'\\wsi\e25\Home\matthias.moritz\My Documents\Data\EIS\test\400MV.pfr')
-b.saveP00(r'\\wsi\e25\Home\matthias.moritz\My Documents\Data\EIS\test\P00\400mV.P00_1')
+b.setData(r'')
+b.saveP00(r'')
 
