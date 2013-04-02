@@ -38,9 +38,10 @@ class Data:
         
     ##
     # analyses the P00 file and sets the Table Variable
-    def __makeTablefromP00 (self, filepath):
-
-        print ('P00')
+    def __makeTablefromP00 (self, filename):
+        dat = mod.p00.analyse()
+        self.Table = dat.loadP00(filename)
+        print (self.Table)
 
 
     def getPotential(self, filepath):
@@ -51,6 +52,7 @@ class Data:
         potential = pp.potential()
 
 b = Data()
-b.setData(r'')
-b.saveP00(r'')
+#b.setData(r'')
+#b.saveP00(r'')
+
 
