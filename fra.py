@@ -51,8 +51,10 @@ class Data:
         pp.setData(pfrfile)
         potential = pp.potential()
 
-b = Data()
-#b.setData(r'')
-#b.saveP00(r'')
+
+if __name__ == '__main__':
+    b = Data()
+    #b.setData(r'')
+    #b.saveP00(r'')
 
 
