@@ -3,7 +3,6 @@ import re
 class analyse:
     def saveP00 (self, table, filename):
         header = 'f/Hz\tZ\'/Ohm\t-Z\'\'/Ohm\tEdc/V\tIdc/A\ttime/s\n'
-        print (header)
         fobj = open(filename, 'w')
         fobj.write (header)
         
