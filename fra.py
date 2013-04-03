@@ -53,10 +53,14 @@ class Data:
         potential = pp.potential()
 
 
+
+
 if __name__ == '__main__':
-    b = Data()
-    b.setData(r'H:\Data\EIS\test\100MV.dfr')
-    print (b.Table)
+    #b = Data()
+    #b.setData(r'H:\Data\EIS\test\100MV.dfr')
+    #print (b.Table)
     #b.saveP00(r'')
+    pass
+
 
 
