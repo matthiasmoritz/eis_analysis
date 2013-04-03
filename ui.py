@@ -11,11 +11,11 @@ class MainWindow(QtGui.QMainWindow):
 
         self.resize(350, 250)
         self.setWindowTitle('EIS')
-#        
+    
         self.pp = QtGui.QLineEdit(self)
         self.pp.setGeometry(10, 30, 200, 20)
         self.pp.setEnabled(False)
-#
+
 
         exit = QtGui.QAction(QtGui.QIcon(''), 'Exit', self)
         exit.setShortcut('Ctrl+Q')
