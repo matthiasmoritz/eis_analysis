@@ -26,6 +26,7 @@ class Data:
             dfrfile = os.path.splitext(filepath)[0] + '.dfr'
             dd = mod.dfr.analyse()
             self.Table = dd.table(dfrfile)
+            print ('Data set:' + filepath)
         else:
             return (False)
         return (True)
@@ -54,7 +55,8 @@ class Data:
 
 if __name__ == '__main__':
     b = Data()
-    #b.setData(r'')
+    b.setData(r'H:\Data\EIS\test\100MV.dfr')
+    print (b.Table)
     #b.saveP00(r'')
 
 

@@ -1,5 +1,7 @@
 import sys
 from PyQt4 import QtGui, QtCore
+import fra
+import os
 
 
 
@@ -10,29 +12,41 @@ class MainWindow(QtGui.QMainWindow):
         self.resize(350, 250)
         self.setWindowTitle('mainwindow')
 
-        textEdit = QtGui.QTextEdit()
-        self.setCentralWidget(textEdit)
 
         exit = QtGui.QAction(QtGui.QIcon(''), 'Exit', self)
         exit.setShortcut('Ctrl+Q')
         exit.setStatusTip('Exit application')
         self.connect(exit, QtCore.SIGNAL('triggered()'), QtCore.SLOT('close()'))
+        
+        
+        openAction = QtGui.QAction('Open', self) 
+        openAction.setShortcut('Ctrl+O') 
+        openAction.setStatusTip('Open a file') 
+        openAction.triggered.connect(self.openFile)
 
-        testAction = QtGui.QAction('test', self) 
-        testAction.setShortcut('Ctrl+T') 
-        testAction.setStatusTip('test') 
-        testAction.triggered.connect(self.test) 
-
+        exportAction = QtGui.QAction('Export', self) 
+        exportAction.setShortcut('Ctrl+E') 
+        exportAction.setStatusTip('Export as P00 file') 
+        exportAction.triggered.connect(self.exportFile)
+        
         self.statusBar()
 
         menubar = self.menuBar()
         file = menubar.addMenu('&File')
         file.addAction(exit)
-        file.addAction(testAction)
+        file.addAction(openAction)
+        file.addAction(exportAction)
 
 
-    def test(self):
-        print ('test')
+    def openFile(self):
+        filename = QtGui.QFileDialog.getOpenFileName(self, 'Open File', os.getenv('HOME')) 
+        self.Data = fra.Data()
+        self.Data.setData(filename)
+        
+    def exportFile(self):
+        filename = QtGui.QFileDialog.getSaveFileName(self, "Save file", "", ".P00")
+        self.Data.saveP00(filename)
+
         
 app = QtGui.QApplication(sys.argv)
 main = MainWindow()
