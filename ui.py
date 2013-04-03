@@ -11,7 +11,11 @@ class MainWindow(QtGui.QMainWindow):
 
         self.resize(350, 250)
         self.setWindowTitle('EIS')
-
+#        
+        self.pp = QtGui.QLineEdit(self)
+        self.pp.setGeometry(10, 30, 200, 20)
+        self.pp.setEnabled(False)
+#
 
         exit = QtGui.QAction(QtGui.QIcon(''), 'Exit', self)
         exit.setShortcut('Ctrl+Q')
@@ -30,7 +34,7 @@ class MainWindow(QtGui.QMainWindow):
         exportAction.triggered.connect(self.exportFile)
         
         self.statusBar()
-
+        
         menubar = self.menuBar()
         file = menubar.addMenu('&File')
         file.addAction(exit)
@@ -42,6 +46,7 @@ class MainWindow(QtGui.QMainWindow):
         filename = QtGui.QFileDialog.getOpenFileName(self, 'Open File', os.getenv('HOME')) 
         self.Data = fra.Data()
         self.Data.setData(filename)
+        self.pp.setText(filename)
         
     def exportFile(self):
         filename = QtGui.QFileDialog.getSaveFileName(self, "Save file", "", ".P00")
