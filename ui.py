@@ -10,7 +10,7 @@ class MainWindow(QtGui.QMainWindow):
         QtGui.QMainWindow.__init__(self)
 
         self.resize(350, 250)
-        self.setWindowTitle('mainwindow')
+        self.setWindowTitle('EIS')
 
 
         exit = QtGui.QAction(QtGui.QIcon(''), 'Exit', self)
