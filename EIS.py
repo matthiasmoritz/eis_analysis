@@ -12,6 +12,7 @@ class MainWindow(QtGui.QMainWindow):
 
         self.resize(450, 150)
         self.setWindowTitle('EIS')
+        self.setWindowIcon(QtGui.QIcon('gui/img/logo.png'))
         
 #
         self.label1 = QtGui.QLabel("Input Path", self)
