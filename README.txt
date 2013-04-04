@@ -4,7 +4,7 @@
 #   * Get the EIS sourcecode from https://github.com/matthiasmoritz/eis_analysis
 #     If you are cool, use Git and update your programm from time to time
 #
-#   * Install Python (V>=3.0.0) from http://www.python.org/getit/ 
+#   * Install Python (V>=3.3.0) from http://www.python.org/getit/ 
 #   * Install PyQt4 from http://www.riverbankcomputing.co.uk/software/pyqt/download 
 #     (Make sure that the version of PyQt fits to your Python version)
 #   * Set the Windows Path Variable like it's discribed here:
