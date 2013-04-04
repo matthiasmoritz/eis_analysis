@@ -42,7 +42,6 @@ class Data:
     def __makeTablefromP00 (self, filename):
         dat = mod.p00.analyse()
         self.Table = dat.loadP00(filename)
-        print (self.Table)
 
 
     def getPotential(self, filepath):

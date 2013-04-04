@@ -6,7 +6,7 @@
 #
 #   * Install Python (V>=3.3.0) from http://www.python.org/getit/ 
 #   * Install PyQt4 from http://www.riverbankcomputing.co.uk/software/pyqt/download 
-#     (Make sure that the version of PyQt fits to your Python version)
+#     (Make sure that the version of PyQt fits to your Python version And both is 64Bit or both 32Bit)
 #   * Set the Windows Path Variable like it's discribed here:
 #     http://www.anthonydebarros.com/2011/10/15/setting-up-python-in-windows-7/
 #
