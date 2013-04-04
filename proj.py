@@ -8,10 +8,13 @@ class analyse:
         self.Data = {}
         
     def setFilelist(self, path):
+        
+        self.Data = {}
         self.Path = path
         for files in os.listdir(path):
             if os.path.splitext(files)[1] == '.dfr':
                 self.Filelist.append(files)
+                
                 
     def setData(self, filename):
         ff = fra.Data()
