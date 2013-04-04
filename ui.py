@@ -70,6 +70,9 @@ class MainWindow(QtGui.QMainWindow):
         dirname = QtGui.QFileDialog.getExistingDirectory(self, 'Open Directory', os.getenv('HOME'))
         self.Data = proj.analyse()
         self.Data.setFilelist(dirname)
+        for files in os.listdir(dirname):
+            if os.path.splitext(files)[1] == '.dfr':
+                self.Data.setData(dirname + '/' +files)
         self.pp.setText(dirname)
         self.out.setText(dirname + '/P00')
 

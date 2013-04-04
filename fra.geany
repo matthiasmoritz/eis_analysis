@@ -24,10 +24,11 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=5
-FILE_NAME_0=815;Python;0;16;0;1;0;H%3A%5Cscripts%5Ceis%5Cfra%5Cfra.py;0;4
+current_page=6
+FILE_NAME_0=1684;Python;0;16;0;1;0;H%3A%5Cscripts%5Ceis%5Cfra%5Cfra.py;0;4
 FILE_NAME_1=22;Python;0;16;0;1;0;H%3A%5Cscripts%5Ceis%5Cfra%5Cmod%5Cpfr.py;0;4
 FILE_NAME_2=277;Python;0;16;0;1;0;H%3A%5Cscripts%5Ceis%5Cfra%5Cmod%5Cdfr.py;0;4
-FILE_NAME_3=608;Python;0;16;0;1;0;H%3A%5Cscripts%5Ceis%5Cfra%5Cmod%5Cp00.py;0;4
-FILE_NAME_4=261;Python;0;16;0;1;0;H%3A%5Cscripts%5Ceis%5Cfra%5Cui.py;0;4
-FILE_NAME_5=12;None;0;16;0;1;0;H%3A%5Cscripts%5Ceis%5Cfra%5C.gitignore;0;4
+FILE_NAME_3=139;Python;0;16;0;1;0;H%3A%5Cscripts%5Ceis%5Cfra%5Cmod%5Cp00.py;0;4
+FILE_NAME_4=2577;Python;0;16;0;1;0;H%3A%5Cscripts%5Ceis%5Cfra%5Cui.py;0;4
+FILE_NAME_5=921;Python;0;16;0;1;0;H%3A%5Cscripts%5Ceis%5Cfra%5Cproj.py;0;4
+FILE_NAME_6=70;Python;0;16;0;1;0;H%3A%5Cscripts%5Ceis%5Cfra%5Csetup.py;0;4
