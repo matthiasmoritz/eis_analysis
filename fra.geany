@@ -24,13 +24,12 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=8
-FILE_NAME_0=1684;Python;0;16;0;1;0;H%3A%5Cscripts%5Ceis%5Cfra%5Cfra.py;0;4
+current_page=4
+FILE_NAME_0=1505;Python;0;16;0;1;0;H%3A%5Cscripts%5Ceis%5Cfra%5Cfra.py;0;4
 FILE_NAME_1=22;Python;0;16;0;1;0;H%3A%5Cscripts%5Ceis%5Cfra%5Cmod%5Cpfr.py;0;4
-FILE_NAME_2=277;Python;0;16;0;1;0;H%3A%5Cscripts%5Ceis%5Cfra%5Cmod%5Cdfr.py;0;4
+FILE_NAME_2=268;Python;0;16;0;1;0;H%3A%5Cscripts%5Ceis%5Cfra%5Cmod%5Cdfr.py;0;4
 FILE_NAME_3=139;Python;0;16;0;1;0;H%3A%5Cscripts%5Ceis%5Cfra%5Cmod%5Cp00.py;0;4
-FILE_NAME_4=2670;Python;0;16;0;1;0;H%3A%5Cscripts%5Ceis%5Cfra%5Cui.py;0;4
-FILE_NAME_5=510;Python;0;16;0;1;0;H%3A%5Cscripts%5Ceis%5Cfra%5Cproj.py;0;4
+FILE_NAME_4=2354;Python;0;16;0;1;0;H%3A%5Cscripts%5Ceis%5Cfra%5CEIS.py;0;4
+FILE_NAME_5=589;Python;0;16;0;1;0;H%3A%5Cscripts%5Ceis%5Cfra%5Cproj.py;0;4
 FILE_NAME_6=125;None;0;16;0;1;0;H%3A%5Cscripts%5Ceis%5Cfra%5Clicense.txt;0;2
-FILE_NAME_7=0;None;0;16;0;1;0;H%3A%5Cscripts%5Ceis%5Cfra%5CREADME.txt;0;4
-FILE_NAME_8=95;Python;0;16;0;1;0;H%3A%5Cscripts%5Ceis%5Cfra%5Capp.py;0;4
+FILE_NAME_7=451;None;0;16;0;1;0;H%3A%5Cscripts%5Ceis%5Cfra%5CREADME.txt;0;4

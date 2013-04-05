@@ -18,7 +18,7 @@ class Data:
     # @li *.dfr
     # @li *.pfr
     # 
-    def setData (self, filepath):
+    def openFile (self, filepath):
         extension = os.path.splitext(filepath)[1]
         if extension == '.P00':
             self.__makeTablefromP00(filepath)
@@ -26,7 +26,7 @@ class Data:
             dfrfile = os.path.splitext(filepath)[0] + '.dfr'
             dd = mod.dfr.analyse()
             self.Table = dd.table(dfrfile)
-            print ('Data set:' + filepath)
+            print ('File opened:' + filepath)
         else:
             return (False)
         return (True)
@@ -36,12 +36,18 @@ class Data:
     def saveP00 (self, filename):
         dat = mod.p00.analyse()
         dat.saveP00(self.Table, filename)
+        print ('File exported: ' + filename)
         
     ##
     # analyses the P00 file and sets the Table Variable
     def __makeTablefromP00 (self, filename):
-        dat = mod.p00.analyse()
-        self.Table = dat.loadP00(filename)
+        try:
+            dat = mod.p00.analyse()
+            self.Table = dat.loadP00(filename)
+            print ('Data Imported from: ' +filename)
+        except:
+            print ('Import file failed: ' + filename)
+        
 
 
     def getPotential(self, filepath):
@@ -51,7 +57,8 @@ class Data:
         pp.setData(pfrfile)
         potential = pp.potential()
 
-
+    def setData(self, table):
+        self.Table = table
 
 
 if __name__ == '__main__':

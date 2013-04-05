@@ -16,10 +16,11 @@ class analyse:
                 self.Filelist.append(files)
                 
                 
-    def setData(self, filename):
+    def openFile(self, filename):
         ff = fra.Data()
-        ff.setData(filename)
-        self.Data.update ({os.path.splitext(filename)[0] : ff.Table})
+        ff.openFile(filename)
+        key = os.path.splitext(os.path.basename(filename))[0]
+        self.Data.update ({key : ff.Table})
         
                 
     def makeP00s(self, subdir='P00'):
@@ -29,11 +30,15 @@ class analyse:
         else:
             print ('/P00 already exists')
             
-        for files in self.Filelist:
+        #for files in self.Filelist:
+        #    ff = fra.Data()
+        #    ff.openFile(self.Path + '/' + files)
+        #    ff.saveP00(self.Path + '/'+ subdir + '/' + os.path.splitext(files)[0]+'.P00') 
+        for key in self.Data:
             ff = fra.Data()
-            ff.setData(self.Path + '/' + files)
-            ff.saveP00(self.Path + '/'+ subdir + '/' + os.path.splitext(files)[0]+'.P00') 
-
+            ff.setData(self.Data[key])
+            self.Data[key]
+            ff.saveP00(self.Path + '/'+ subdir + '/' + key+'.P00') 
 
 if __name__ == '__main__':
     p = analyse()

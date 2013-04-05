@@ -69,11 +69,11 @@ class MainWindow(QtGui.QMainWindow):
             self.Data.setFilelist(dirname)
             for files in os.listdir(dirname):
                 if os.path.splitext(files)[1] == '.dfr':
-                    self.Data.setData(dirname + '\\' +files)
+                    self.Data.openFile(dirname + '\\' +files)
             self.pp.setText(dirname)
             self.out.setText(dirname + '\P00')
         except:
-            pass
+            print ('no files imported')
 
         
 
