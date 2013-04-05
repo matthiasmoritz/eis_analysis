@@ -34,16 +34,14 @@ class Data:
     ##
     # Saves the Table in the P00 filestructure
     def saveP00 (self, filename):
-        dat = mod.p00.analyse()
-        dat.saveP00(self.Table, filename)
+        mod.p00.saveP00(self.Table, filename)
         print ('File exported: ' + filename)
         
     ##
     # analyses the P00 file and sets the Table Variable
     def __makeTablefromP00 (self, filename):
         try:
-            dat = mod.p00.analyse()
-            self.Table = dat.loadP00(filename)
+            self.Table = mod.p00.loadP00(filename)
             print ('Data Imported from: ' +filename)
         except:
             print ('Import file failed: ' + filename)
