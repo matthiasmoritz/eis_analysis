@@ -24,8 +24,7 @@ class Data:
             self.__makeTablefromP00(filepath)
         if extension == '.dfr' or extension == '.pfr':
             dfrfile = os.path.splitext(filepath)[0] + '.dfr'
-            dd = mod.dfr.analyse()
-            self.Table = dd.table(dfrfile)
+            self.Table = mod.dfr.makeTable(dfrfile)
             print ('File opened:' + filepath)
         else:
             return (False)
@@ -60,10 +59,6 @@ class Data:
 
 
 if __name__ == '__main__':
-    #b = Data()
-    #b.setData(r'H:\Data\EIS\test\100MV.dfr')
-    #print (b.Table)
-    #b.saveP00(r'')
     pass
 
 
