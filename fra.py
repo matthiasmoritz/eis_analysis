@@ -46,20 +46,19 @@ class Data:
             print ('Import file failed: ' + filename)
         
 
-
+    ##
+    # read and return the Potential of a *.pfr file
     def getPotential(self, filepath):
-        (path, filename) = os.path.split(filepath)
-        pfrfile = os.path.splitext(filepath)[0] + '.pfr'
-        pp = mod.pfr.analyse()
-        pp.setData(pfrfile)
-        potential = pp.potential()
+        potential = mod.pfr.potential(filepath)
+        return (potential)
 
     def setData(self, table):
         self.Table = table
 
 
 if __name__ == '__main__':
-    pass
+    a = Data()
+    print (float(a.getPotential(r'H:\Data\EIS\test\400MV.pfr')))
 
 
 
