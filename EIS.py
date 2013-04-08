@@ -6,6 +6,7 @@ import proj
 
 
 
+
 class MainWindow(QtGui.QMainWindow):
     def __init__(self, parent=None):
         QtGui.QMainWindow.__init__(self)
@@ -46,12 +47,20 @@ class MainWindow(QtGui.QMainWindow):
         exportAction.setStatusTip('Export as P00 file') 
         exportAction.triggered.connect(self.exportFile)
         
+        #AboutMenu
+        #   About
+        openAboutWidget = QtGui.QAction ('About', self)
+        openAboutWidget.triggered.connect(self.aboutWidget)
+        
         #Create Menu Bar
         menubar = self.menuBar()
         file = menubar.addMenu('&File')
         file.addAction(exit)
         file.addAction(openDirAction)
         file.addAction(exportAction)
+        
+        about = menubar.addMenu('&About')
+        about.addAction(openAboutWidget)
 
         self.statusBar()
         
@@ -76,9 +85,15 @@ class MainWindow(QtGui.QMainWindow):
             print ('no files imported')
 
         
+    def aboutWidget(self):
+        import gui.about.aboutbox
+        gui.about.aboutbox.main()
 
+        
 if __name__ == '__main__':
+
     app = QtGui.QApplication(sys.argv)
     main = MainWindow()
     main.show()
     sys.exit(app.exec_())
+    
