@@ -20,7 +20,7 @@ class analyse:
         ff = fra.Data()
         ff.openFile(filename)
         key = os.path.splitext(os.path.basename(filename))[0]
-        self.Data.update ({key : ff.Table})
+        self.Data.update ({key :{"data": ff.Table}})
         
                 
     def makeP00s(self, subdir='P00'):
@@ -36,8 +36,8 @@ class analyse:
         #    ff.saveP00(self.Path + '/'+ subdir + '/' + os.path.splitext(files)[0]+'.P00') 
         for key in self.Data:
             ff = fra.Data()
-            ff.setData(self.Data[key])
-            self.Data[key]
+            ff.setData(self.Data[key]["data"])
+            #self.Data[key]
             ff.saveP00(self.Path + '/'+ subdir + '/' + key+'.P00') 
 
 if __name__ == '__main__':
