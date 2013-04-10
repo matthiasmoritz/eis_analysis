@@ -46,11 +46,6 @@ class Data:
             print ('Import file failed: ' + filename)
         
 
-    ##
-    # read and return the Potential of a *.pfr file
-    def getPotential(self, filepath):
-        potential = mod.pfr.potential(filepath)
-        return (potential)
 
     def setData(self, table):
         self.Table = table

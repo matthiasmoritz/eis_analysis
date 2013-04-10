@@ -1,5 +1,6 @@
 import fra
 import os
+import mod.pfr
 
 class analyse:
     def __init__(self):
@@ -19,8 +20,25 @@ class analyse:
     def openFile(self, filename):
         ff = fra.Data()
         ff.openFile(filename)
-        key = os.path.splitext(os.path.basename(filename))[0]
+        basename = os.path.splitext(os.path.basename(filename))[0]
+        key = filename
+        #Add Data
         self.Data.update ({key :{"data": ff.Table}})
+        #Add Basename
+        self.Data[key].update({"basename" : basename})
+        #Add Potential
+        try: 
+            potential = mod.pfr.potential(os.path.splitext(filename)[0]+'.pfr')
+            self.Data[key].update({"potential" : float(potential)})
+        except:
+            av = 0
+            for E in self.Data[key]["data"]:
+                av = av + float(E[3])
+            potential = av/len(self.Data[key]["data"])
+            potential = round(potential,3)
+            self.Data[key].update({"potential" : potential})
+
+            
         
                 
     def makeP00s(self, subdir='P00'):
@@ -29,20 +47,16 @@ class analyse:
             print ('/P00 created')
         else:
             print ('/P00 already exists')
-            
-        #for files in self.Filelist:
-        #    ff = fra.Data()
-        #    ff.openFile(self.Path + '/' + files)
-        #    ff.saveP00(self.Path + '/'+ subdir + '/' + os.path.splitext(files)[0]+'.P00') 
+
         for key in self.Data:
             ff = fra.Data()
             ff.setData(self.Data[key]["data"])
-            #self.Data[key]
-            ff.saveP00(self.Path + '/'+ subdir + '/' + key+'.P00') 
+            ff.saveP00(self.Path + '/'+ subdir + '/' + self.Data[key]["basename"]+'.P00') 
 
 if __name__ == '__main__':
     p = analyse()
-    p.setFilelist('H:/Data/EIS/test')
-    p.makeP00s()
+    #p.setFilelist('H:/Data/EIS/test')
+    p.openFile(r'H:/Data/EIS/test/100MV.dfr')
+    #p.makeP00s()
     
  
