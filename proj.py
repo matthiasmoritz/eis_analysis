@@ -1,6 +1,7 @@
 import fra
 import os
 import mod.pfr
+import mod.analyse
 
 class analyse:
     def __init__(self):
@@ -53,10 +54,47 @@ class analyse:
             ff.setData(self.Data[key]["data"])
             ff.saveP00(self.Path + '/'+ subdir + '/' + self.Data[key]["basename"]+'.P00') 
 
+
+
+    def makeImpTable(self, subdir='anale'):
+        if not (os.path.exists(self.Path + '/' + subdir)):
+            os.mkdir(self.Path + '/' + subdir)
+            print ('/' + subdir+ ' created')
+        else:
+            print ('/' +subdir+' already exists')
+        flist = mod.analyse.getFrequencyList(self.Data)
+        plist = mod.analyse.getPotentialList(self.Data)
+        tab = mod.analyse.getImpedanceTable(self.Data)
+        header = 'f/Hz,'
+        for p in plist:
+            header = header + str(p) + ','
+        header = header[:-1]+'\n'
+        print (header)
+        fobj = open(self.Path + '/' + subdir + '/impedancetable.imp', 'w')
+        fobj.write(header)
+        counter = 0
+        for l in tab:
+            row = str(flist[counter])+','
+            for i in l:
+                row = row+str(i)+','
+            row = row[:-1]+'\n'
+            fobj.write(row)
+            counter = counter +1
+        fobj.close()       
+        
+
 if __name__ == '__main__':
     p = analyse()
     #p.setFilelist('H:/Data/EIS/test')
     p.openFile(r'H:/Data/EIS/test/100MV.dfr')
+    p.openFile(r'H:/Data/EIS/test/-200MV.dfr')
+    p.openFile(r'H:/Data/EIS/test/300MV.dfr')
+    p.makeImpTable()
+    #tab =(mod.analyse.getImpedanceTable(p.Data))
+    #fobj = open(r'H:/Data/EIS/test/impedtest.asdf', 'w')
+    #for l in tab:
+    #    fobj.write (str(l[0]) + ' ' + str(l[1]) + ' ' + str(l[2]) + '\n')
+    #fobj.close()
     #p.makeP00s()
     
  

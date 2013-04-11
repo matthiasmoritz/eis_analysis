@@ -67,6 +67,7 @@ class MainWindow(QtGui.QMainWindow):
     def exportFile(self):
         if os.path.isdir(self.pp.text()):
             self.Data.makeP00s()
+        self.Data.makeImpTable()
             
         
     def openDir(self):
