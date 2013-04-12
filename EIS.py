@@ -23,13 +23,26 @@ class MainWindow(QtGui.QMainWindow):
         self.pp.setGeometry(100, 30, 200, 20)
         self.pp.setEnabled(False)
         
-        #Target Path for the P00 Export
-        self.label2 = QtGui.QLabel("Export Path", self)
+        #Target Path for the  Export
+        self.label2 = QtGui.QLabel("P00 Path", self)
         self.label2.move(10, 60)
 
-        self.out = QtGui.QLineEdit(self)
-        self.out.setGeometry(100, 60, 200, 20)
-        self.out.setEnabled(True)
+        self.p00 = QtGui.QLineEdit(self)
+        self.p00.setGeometry(100, 60, 200, 20)
+        self.p00.setEnabled(False)
+        
+        self.label3 = QtGui.QLabel("Analyse Paht", self)
+        self.label3.move(10, 90)
+        self.anal = QtGui.QLineEdit(self)
+        self.anal.setGeometry(100, 90, 200, 20)
+        self.anal.setEnabled(False)
+        
+        self.label4 = QtGui.QLabel("Area", self)
+        self.label4.move(10, 120)
+        self.area = QtGui.QLineEdit(self)
+        self.area.setGeometry(100, 120, 200, 20)
+        self.area.setEnabled(True)
+        self.area.setText('0.196')        
 
         #FileMenu
         #   Exit
@@ -67,7 +80,8 @@ class MainWindow(QtGui.QMainWindow):
     def exportFile(self):
         if os.path.isdir(self.pp.text()):
             self.Data.makeP00s()
-        self.Data.makeImpTable()
+        self.Data.makeImpTable(float(self.area.text()))
+        self.Data.makePhaseTable()
             
         
     def openDir(self):
@@ -81,7 +95,8 @@ class MainWindow(QtGui.QMainWindow):
                 if os.path.splitext(files)[1] == '.P00':
                     self.Data.openFile(dirname + '\\' +files)
             self.pp.setText(dirname)
-            self.out.setText(dirname + '\P00')
+            self.p00.setText(dirname + '\P00')
+            self.anal.setText(dirname + '\analyse')
         except:
             print ('no files imported')
 

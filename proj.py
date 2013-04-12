@@ -56,7 +56,7 @@ class analyse:
 
 
 
-    def makeImpTable(self, subdir='anale'):
+    def makeImpTable(self, area, subdir='analyse'):
         if not (os.path.exists(self.Path + '/' + subdir)):
             os.mkdir(self.Path + '/' + subdir)
             print ('/' + subdir+ ' created')
@@ -64,7 +64,7 @@ class analyse:
             print ('/' +subdir+' already exists')
         flist = mod.analyse.getFrequencyList(self.Data)
         plist = mod.analyse.getPotentialList(self.Data)
-        tab = mod.analyse.getImpedanceTable(self.Data)
+        tab = mod.analyse.getTable(self.Data, "potential", area)
         header = 'f/Hz,'
         for p in plist:
             header = header + str(p) + ','
@@ -82,6 +82,32 @@ class analyse:
             counter = counter +1
         fobj.close()       
         
+    def makePhaseTable(self, subdir='analyse'):
+        if not (os.path.exists(self.Path + '/' + subdir)):
+            os.mkdir(self.Path + '/' + subdir)
+            print ('/' + subdir+ ' created')
+        else:
+            print ('/' +subdir+' already exists')
+        flist = mod.analyse.getFrequencyList(self.Data)
+        plist = mod.analyse.getPotentialList(self.Data)
+        tab = mod.analyse.getTable(self.Data, "phase")
+        header = 'f/Hz,'
+        for p in plist:
+            header = header + str(p) + ','
+        header = header[:-1]+'\n'
+        print (header)
+        fobj = open(self.Path + '/' + subdir + '/phasetable.imp', 'w')
+        fobj.write(header)
+        counter = 0
+        for l in tab:
+            row = str(flist[counter])+','
+            for i in l:
+                row = row+str(i)+','
+            row = row[:-1]+'\n'
+            fobj.write(row)
+            counter = counter +1
+        fobj.close()
+
 
 if __name__ == '__main__':
     p = analyse()

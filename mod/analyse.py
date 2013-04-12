@@ -18,7 +18,19 @@ def getPotentialList(Data):
     return (sorted(plist))
 
 
-def getImpedanceTable(Data):
+def getPotential(dataSet):
+    real = float(dataSet[1])
+    imag = float(dataSet[2])
+    return (math.sqrt((real)**2 + (imag)**2))
+
+
+def getPhase(dataSet):
+    real = float(dataSet[1])
+    imag = float(dataSet[2])
+    phi  = math.degrees(math.atan(imag/real))
+    return (phi)
+    
+def getTable(Data, typ, areaFactor = 1):
     flist = getFrequencyList(Data)
     plist = getPotentialList(Data)
     i = 0
@@ -46,7 +58,10 @@ def getImpedanceTable(Data):
             #print (fdic[str(float(i[0]))])
             fv=(fdic[str(float(i[0]))])
             pv=(pdic[Data[key]["potential"]])
-            zv=round(math.sqrt(float(i[1])**2+float(i[2])**2), 4)
+            if typ == "potential":
+                zv=round(getPotential(i)*areaFactor, 4)
+            if typ == "phase":
+                zv = round(getPhase(i), 4)
             tab[fv][pv] = zv
     return (tab)
   
@@ -57,4 +72,4 @@ if __name__ == '__main__':
     d['k1'].update({"potential": 0.2})
     d.update ({'k2':{"data" : [[4,0,0],[5,0,0],[3,0,0]]}})
     d['k2'].update({"potential": -0.4})
-    print(getImpedanceTable(d))
+    print(getTable(d, "phase"))
