@@ -66,17 +66,39 @@ class Data:
         f = np.array(flist)
         z = np.array(zlist)
         fitfunc   = lambda p, x  : abs(p[0] + 1/(1/p[1] - 1j*2*math.pi*p[2]*x))
-        errfunc = lambda p, x, y: fitfunc(p, x) - y
+        errfunc = lambda p, x, y: log10(fitfunc(p, x)) - log10(y)
         p0 = [ z[1], z[-1], 1e-7]
         p1, success = optimize.leastsq(errfunc, p0[:], args=(f, z))
         print (p1)
+        p2 = [219, 354e5,1.25e-7]
         
         #print (success)
         
-        print (p0)
+        print (p2)
         
-        
-        
+                
+        #time = linspace(f.min(), f.max(), 100000)
+        plot(f, z, "ro", f, fitfunc(p1, f), "r-") # Plot of the data and the fit
+        plot( f, fitfunc(p2, f), "b-")
+
+        # Legend the plot
+        title("Bode-Plot")
+        xlabel("time [ms]")
+        xscale('log')
+        ylabel("displacement [um]")
+        legend(('measure position', 'my fit',  'ZSim fit'))
+        yscale('log')
+
+        ax = axes()
+
+        text(0.8, 0.07,
+             'what model can we trust?', 
+             fontsize=16,
+             horizontalalignment='right',
+             verticalalignment='center',
+             transform=ax.transAxes)
+
+        show()
         
 if __name__ == '__main__':
     a = Data()
