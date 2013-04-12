@@ -26,7 +26,7 @@ class about(QtGui.QDialog):
         self.label1 = QtGui.QLabel("EIS-analyser", self)
         self.label1.move(10, 15)        
                 
-        self.label2 = QtGui.QLabel("Version 0.1", self)
+        self.label2 = QtGui.QLabel("Version 0.2", self)
         self.label2.move(10, 30) 
         
         self.label3 = QtGui.QLabel("Matthias Moritz <moritz370@googlemail.com>", self)
