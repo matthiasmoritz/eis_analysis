@@ -1,13 +1,5 @@
 import math
-def getFrequencyList(Data):
-    flist = []
-    for key in Data:
-        s = Data[key]["data"]
-        for f in s:
-            if float(f[0]) not in flist:
-                flist.append(float(f[0]))
-    return (sorted(flist))
-    
+
 
 def getPotentialList(Data):
     plist = []
@@ -17,17 +9,26 @@ def getPotentialList(Data):
             plist.append(p)
     return (sorted(plist))
 
-
-def getPotential(dataSet):
+def getImpedanceList(Data):
+    zlist = []
+    for key in Data:
+        z = getImpedance(Data[key]["data"])
+        zlist.append(z)
+    
+def getImpedance(dataSet):
     real = float(dataSet[1])
     imag = float(dataSet[2])
-    return (math.sqrt((real)**2 + (imag)**2))
+    z = math.sqrt((real)**2 + (imag)**2)
+    return (z)
 
 
 def getPhase(dataSet):
     real = float(dataSet[1])
     imag = float(dataSet[2])
-    phi  = math.degrees(math.atan(imag/real))
+    try:
+        phi  = math.degrees(math.atan(imag/real))
+    except:
+        phi = 90
     return (phi)
     
 def getTable(Data, typ, areaFactor = 1):
@@ -58,14 +59,16 @@ def getTable(Data, typ, areaFactor = 1):
             #print (fdic[str(float(i[0]))])
             fv=(fdic[str(float(i[0]))])
             pv=(pdic[Data[key]["potential"]])
-            if typ == "potential":
-                zv=round(getPotential(i)*areaFactor, 4)
+            if typ == "impedance":
+                zv=round(getImpedance(i)*areaFactor, 4)
             if typ == "phase":
                 zv = round(getPhase(i), 4)
             tab[fv][pv] = zv
     return (tab)
   
-    
+   
+
+
 if __name__ == '__main__':
     d = {}
     d.update ({'k1':{"data" : [[1.12,0,0],[2,0,0],[3,0,0]]}})

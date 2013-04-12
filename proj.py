@@ -64,7 +64,7 @@ class analyse:
             print ('/' +subdir+' already exists')
         flist = mod.analyse.getFrequencyList(self.Data)
         plist = mod.analyse.getPotentialList(self.Data)
-        tab = mod.analyse.getTable(self.Data, "potential", area)
+        tab = mod.analyse.getTable(self.Data, "impedance", area)
         header = 'f/Hz,'
         for p in plist:
             header = header + str(p) + ','
@@ -109,13 +109,20 @@ class analyse:
         fobj.close()
 
 
+    def simpleFit(self):
+        for i in self.Data:
+            a = {"key" : self.Data[i]}
+            mod.analyse.simpleFit(a)
+    
+    
 if __name__ == '__main__':
     p = analyse()
     #p.setFilelist('H:/Data/EIS/test')
     p.openFile(r'H:/Data/EIS/test/100MV.dfr')
     p.openFile(r'H:/Data/EIS/test/-200MV.dfr')
     p.openFile(r'H:/Data/EIS/test/300MV.dfr')
-    p.makeImpTable()
+    #p.makeImpTable(0.196)
+    p.simpleFit()
     #tab =(mod.analyse.getImpedanceTable(p.Data))
     #fobj = open(r'H:/Data/EIS/test/impedtest.asdf', 'w')
     #for l in tab:

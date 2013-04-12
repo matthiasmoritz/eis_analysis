@@ -82,6 +82,7 @@ class MainWindow(QtGui.QMainWindow):
             self.Data.makeP00s()
         self.Data.makeImpTable(float(self.area.text()))
         self.Data.makePhaseTable()
+        
             
         
     def openDir(self):
