@@ -31,7 +31,7 @@ class MainWindow(QtGui.QMainWindow):
         self.p00.setGeometry(100, 60, 200, 20)
         self.p00.setEnabled(False)
         
-        self.label3 = QtGui.QLabel("Analyse Paht", self)
+        self.label3 = QtGui.QLabel("Analyse Path", self)
         self.label3.move(10, 90)
         self.anal = QtGui.QLineEdit(self)
         self.anal.setGeometry(100, 90, 200, 20)
