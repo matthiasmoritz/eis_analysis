@@ -9,7 +9,8 @@
 #     (Make sure that the version of PyQt fits to your Python version And both is 64Bit or both 32Bit)
 #   * Set the Windows Path Variable like it's discribed here:
 #     http://www.anthonydebarros.com/2011/10/15/setting-up-python-in-windows-7/
-#
+#   * Install the matplotlib, scipy and numpy (use google to find the libs)
+#   * 64bit versions are inofficial published at(http://www.lfd.uci.edu/~gohlke/pythonlibs/)
 #   * Read the license (License.txt) and just use the software if you agree
 #     with the terms of use
 #   
