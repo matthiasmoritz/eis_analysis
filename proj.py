@@ -28,10 +28,12 @@ class analyse:
         #Add Basename
         self.Data[key].update({"basename" : basename})
         #Add Potential
-        try: 
+        try:
+            #by reading the .pfr file 
             potential = mod.pfr.potential(os.path.splitext(filename)[0]+'.pfr')
             self.Data[key].update({"potential" : float(potential)})
         except:
+            #by calculating from the raw data
             av = 0
             for E in self.Data[key]["data"]:
                 av = av + float(E[3])
@@ -46,16 +48,23 @@ class analyse:
         
                 
     def makeP00s(self, subdir='P00'):
+        
         if not (os.path.exists(self.Path + '/P00')):
             os.mkdir(self.Path + '/P00')
             print ('/P00 created')
         else:
             print ('/P00 already exists')
-
-        for key in self.Data:
-            ff = fra.Data()
-            ff.setData(self.Data[key]["data"])
-            ff.saveP00(self.Path + '/'+ subdir + '/' + self.Data[key]["basename"]+'.P00') 
+        counter = 0
+        try:
+            for key in self.Data:
+                ff = fra.Data()
+                ff.setData(self.Data[key]["data"])
+                ff.saveP00(self.Path + '/'+ subdir + '/' + self.Data[key]["basename"]+'.P00') 
+                counter = counter+1
+            print (str(counter) + ' P00 files exported to ' + self.Path + '/'+ subdir + '/')
+        except (Exception, e):
+            print ('P00-Error:')
+            print (e)
 
 
 
@@ -63,8 +72,6 @@ class analyse:
         if not (os.path.exists(self.Path + '/' + subdir)):
             os.mkdir(self.Path + '/' + subdir)
             print ('/' + subdir+ ' created')
-        else:
-            print ('/' +subdir+' already exists')
         flist = mod.analyse.getFrequencyList(self.Data)
         plist = mod.analyse.getPotentialList(self.Data)
         tab = mod.analyse.getTable(self.Data, "impedance", area)
@@ -72,7 +79,6 @@ class analyse:
         for p in plist:
             header = header + str(p) + ','
         header = header[:-1]+'\n'
-        print (header)
         fobj = open(self.Path + '/' + subdir + '/impedancetable.imp', 'w')
         fobj.write(header)
         counter = 0
@@ -89,8 +95,6 @@ class analyse:
         if not (os.path.exists(self.Path + '/' + subdir)):
             os.mkdir(self.Path + '/' + subdir)
             print ('/' + subdir+ ' created')
-        else:
-            print ('/' +subdir+' already exists')
         flist = mod.analyse.getFrequencyList(self.Data)
         plist = mod.analyse.getPotentialList(self.Data)
         tab = mod.analyse.getTable(self.Data, "phase")
@@ -98,7 +102,6 @@ class analyse:
         for p in plist:
             header = header + str(p) + ','
         header = header[:-1]+'\n'
-        print (header)
         fobj = open(self.Path + '/' + subdir + '/phasetable.phi', 'w')
         fobj.write(header)
         counter = 0
@@ -122,11 +125,7 @@ class analyse:
         for key in sorted(msData):
             fobj.write (str(key) + ',' + str(1/(msData[key]/areaFactor)**2)+ '\n')
         
-#    def getFit(Data):
-#        ff = fra.Data()
-#        for key in Data:
-#            ff.setData(Data[key]["data"])
-#            return (ff.simpleFit())
+
     
 if __name__ == '__main__':
     p = analyse()
@@ -134,8 +133,9 @@ if __name__ == '__main__':
     p.openFile(r'H:/Data/EIS/test/-200MV.dfr')
     p.openFile(r'H:/Data/EIS/test/100MV.dfr')
     p.openFile(r'H:/Data/EIS/test/300MV.dfr')
+    p.makeP00s('Data/EIS/test/P00')
     #p.makeImpTable(0.196)
-    p.makeMottSchottky(1)
+    #p.makeMottSchottky(1)
 
     #tab =(mod.analyse.getImpedanceTable(p.Data))
     #fobj = open(r'H:/Data/EIS/test/impedtest.asdf', 'w')

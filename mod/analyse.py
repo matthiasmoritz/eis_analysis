@@ -64,8 +64,6 @@ def getTable(Data, typ, areaFactor = 1):
         
     for key in Data:
         for i in Data[key]["data"]:
-            #print (i)
-            #print (fdic[str(float(i[0]))])
             fv=(fdic[str(float(i[0]))])
             pv=(pdic[Data[key]["potential"]])
             if typ == "impedance":

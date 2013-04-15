@@ -38,7 +38,7 @@ class Data:
     # Saves the Table in the P00 filestructure
     def saveP00 (self, filename):
         p00.saveP00(self.Table, filename)
-        print ('File exported: ' + filename)
+        #print ('File exported: ' + filename)
         
     ##
     # analyses the P00 file and sets the Table Variable
