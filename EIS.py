@@ -11,7 +11,7 @@ class MainWindow(QtGui.QMainWindow):
     def __init__(self, parent=None):
         QtGui.QMainWindow.__init__(self)
 
-        self.resize(450, 150)
+        self.resize(450, 200)
         self.setWindowTitle('EIS')
         self.setWindowIcon(QtGui.QIcon('gui/img/logo.png'))
         
@@ -82,6 +82,7 @@ class MainWindow(QtGui.QMainWindow):
             self.Data.makeP00s()
         self.Data.makeImpTable(float(self.area.text()))
         self.Data.makePhaseTable()
+        self.Data.makeMottSchottky(float(self.area.text()))
         
             
         

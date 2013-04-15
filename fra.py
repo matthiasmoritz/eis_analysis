@@ -65,44 +65,49 @@ class Data:
             zlist.append((math.sqrt(float(i[1])**2+float(i[2])**2)))
         f = np.array(flist)
         z = np.array(zlist)
+        
         fitfunc   = lambda p, x  : abs(p[0] + 1/(1/p[1] - 1j*2*math.pi*p[2]*x))
         errfunc = lambda p, x, y: log10(fitfunc(p, x)) - log10(y)
+        
+        #initial guess
         p0 = [ z[1], z[-1], 1e-7]
         p1, success = optimize.leastsq(errfunc, p0[:], args=(f, z))
-        print (p1)
-        p2 = [219, 354e5,1.25e-7]
+        #print (p1)
         
-        #print (success)
-        
-        print (p2)
+        #print (math.asin(math.sin(p1[3])))
+        #p2 = [219.0e0, 3.54e5,1.25e-7] #values fitted by Zsim
+        #print (p2)
         
                 
         #time = linspace(f.min(), f.max(), 100000)
         plot(f, z, "ro", f, fitfunc(p1, f), "r-") # Plot of the data and the fit
-        plot( f, fitfunc(p2, f), "b-")
+        #plot( f, fitfunc(p2, f), "b*")
 
-        # Legend the plot
-        title("Bode-Plot")
-        xlabel("time [ms]")
-        xscale('log')
-        ylabel("displacement [um]")
-        legend(('measure position', 'my fit',  'ZSim fit'))
-        yscale('log')
+        # Legend and scale plot
+        
+        #title("Bode-Plot")
+        #xlabel("f/Hz")
+        #xscale('log')
+        #ylabel("Impedance |Z|")
+        #legend(('measure position', 'my fit',  'ZSim fit'))
+        #yscale('log')
+        #
+        #ax = axes()
+        #
+        #text(0.8, 0.07,
+        #     'what model can we trust?', 
+        #     fontsize=16,
+        #     horizontalalignment='right',
+        #     verticalalignment='center',
+        #     transform=ax.transAxes)
 
-        ax = axes()
-
-        text(0.8, 0.07,
-             'what model can we trust?', 
-             fontsize=16,
-             horizontalalignment='right',
-             verticalalignment='center',
-             transform=ax.transAxes)
-
-        show()
+        #show()
+        
+        return (p1, success)
         
 if __name__ == '__main__':
     a = Data()
-    a.openFile(r'H:\Data\EIS\test\-900MV.pfr')
+    a.openFile(r'H:\Data\EIS\test\0MV.pfr')
     #print (a.Table)
     a.simpleFit()
 

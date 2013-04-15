@@ -1,6 +1,15 @@
 import math
 
 
+def getFrequencyList(Data):
+    flist = []
+    for key in Data:
+        s = Data[key]["data"]
+        for f in s:
+            if float(f[0]) not in flist:
+                flist.append(float(f[0]))
+    return (sorted(flist))
+
 def getPotentialList(Data):
     plist = []
     for key in Data:

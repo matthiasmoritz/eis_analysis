@@ -38,6 +38,9 @@ class analyse:
             potential = av/len(self.Data[key]["data"])
             potential = round(potential,3)
             self.Data[key].update({"potential" : potential})
+            
+        #Add fitting Data
+        self.Data[key].update({"fit" : ff.simpleFit()})
 
             
         
@@ -96,7 +99,7 @@ class analyse:
             header = header + str(p) + ','
         header = header[:-1]+'\n'
         print (header)
-        fobj = open(self.Path + '/' + subdir + '/phasetable.imp', 'w')
+        fobj = open(self.Path + '/' + subdir + '/phasetable.phi', 'w')
         fobj.write(header)
         counter = 0
         for l in tab:
@@ -109,20 +112,31 @@ class analyse:
         fobj.close()
 
 
-    def simpleFit(self):
-        for i in self.Data:
-            a = {"key" : self.Data[i]}
-            mod.analyse.simpleFit(a)
-    
+    def makeMottSchottky(self, areaFactor=1, subdir='analyse'):
+        msData = {}
+        for key in self.Data:
+            msData.update ({self.Data[key]["potential"] : self.Data[key]["fit"][0][2]})
+        header = 'Potential,1/C²\nV,µF^-2*cm^4\n'
+        fobj = open(self.Path + '/' + subdir + '/mottSchottky.msy', 'w')
+        fobj.write(header)
+        for key in sorted(msData):
+            fobj.write (str(key) + ',' + str(1/(msData[key]/areaFactor)**2)+ '\n')
+        
+#    def getFit(Data):
+#        ff = fra.Data()
+#        for key in Data:
+#            ff.setData(Data[key]["data"])
+#            return (ff.simpleFit())
     
 if __name__ == '__main__':
     p = analyse()
     #p.setFilelist('H:/Data/EIS/test')
-    p.openFile(r'H:/Data/EIS/test/100MV.dfr')
     p.openFile(r'H:/Data/EIS/test/-200MV.dfr')
+    p.openFile(r'H:/Data/EIS/test/100MV.dfr')
     p.openFile(r'H:/Data/EIS/test/300MV.dfr')
     #p.makeImpTable(0.196)
-    p.simpleFit()
+    p.makeMottSchottky(1)
+
     #tab =(mod.analyse.getImpedanceTable(p.Data))
     #fobj = open(r'H:/Data/EIS/test/impedtest.asdf', 'w')
     #for l in tab:
