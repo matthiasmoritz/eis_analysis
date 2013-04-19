@@ -72,37 +72,7 @@ class Data:
         #initial guess
         p0 = [ z[1], z[-1], 1e-7]
         p1, success = optimize.leastsq(errfunc, p0[:], args=(f, z))
-        #print (p1)
-        
-        #print (math.asin(math.sin(p1[3])))
-        #p2 = [219.0e0, 3.54e5,1.25e-7] #values fitted by Zsim
-        #print (p2)
-        
-                
-        #time = linspace(f.min(), f.max(), 100000)
-        plot(f, z, "ro", f, fitfunc(p1, f), "r-") # Plot of the data and the fit
-        #plot( f, fitfunc(p2, f), "b*")
 
-        # Legend and scale plot
-        
-        #title("Bode-Plot")
-        #xlabel("f/Hz")
-        #xscale('log')
-        #ylabel("Impedance |Z|")
-        #legend(('measure position', 'my fit',  'ZSim fit'))
-        #yscale('log')
-        #
-        #ax = axes()
-        #
-        #text(0.8, 0.07,
-        #     'what model can we trust?', 
-        #     fontsize=16,
-        #     horizontalalignment='right',
-        #     verticalalignment='center',
-        #     transform=ax.transAxes)
-
-        #show()
-        
         return (p1, success)
         
 if __name__ == '__main__':
