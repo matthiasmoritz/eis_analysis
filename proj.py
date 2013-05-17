@@ -124,9 +124,21 @@ class analyse:
         fobj.write(header)
         for key in sorted(msData):
             fobj.write (str(key) + ',' + str(1/(msData[key]/areaFactor)**2)+ '\n')
+        fobj.close()
         
 
-    
+    def makeFittingTable(self, areaFactor=1, subdir ='analyse'):
+        fitData = {}
+        for key in self.Data:
+            fitData.update({self.Data[key]["potential"] : self.Data[key]["fit"][0]})
+        header = 'Potential,R_S,R_P,C\n'
+        fobj = open(self.Path + '/' + subdir + '/fitting.fit', 'w')
+        fobj.write (header)
+        for key in sorted(fitData):
+            fobj.write (str(key) + ',' + str(abs(fitData[key][0]*areaFactor)) + ','+ str(abs(fitData[key][1]*areaFactor)) + ',' + str(abs(fitData[key][2]/areaFactor)) + '\n')
+        fobj.close()
+            
+        
 if __name__ == '__main__':
     p = analyse()
     #p.setFilelist('H:/Data/EIS/test')

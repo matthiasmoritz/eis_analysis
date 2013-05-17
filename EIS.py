@@ -121,7 +121,7 @@ class MainWindow(QtGui.QMainWindow):
             self.Data.makePhaseTable()
         if self.cbmsy.checkState():
             self.Data.makeMottSchottky(float(self.area.text()))
-        
+        self.Data.makeFittingTable(float(self.area.text()))
             
         
     def openDir(self):
