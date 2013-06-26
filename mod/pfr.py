@@ -27,7 +27,9 @@ def potential(filepath):
     """reads the offsetpotential from a dfr file"""
     return (parsePfr(filepath)["PotentiostaticSingle"]["Potential"])
 
-
+def scantype (filepath):
+    return (parsePfr(filepath)["Procedure"]["ScanType"])
+    
 if __name__ =='__main__':
     print (potential(r'H:\Data\EIS\test\400MV.pfr'))
     
