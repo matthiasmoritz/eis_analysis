@@ -22,27 +22,32 @@ class analyse:
         ff = fra.Data()
         ff.openFile(filename)
         basename = os.path.splitext(os.path.basename(filename))[0]
-        key = filename
+        
         #Add Data
-        self.Data.update ({key :{"data": ff.Table}})
-        #Add Basename
-        self.Data[key].update({"basename" : basename})
-        #Add Potential
-        try:
-            #by reading the .pfr file 
-            potential = mod.pfr.potential(os.path.splitext(filename)[0]+'.pfr')
-            self.Data[key].update({"potential" : float(potential)})
-        except:
-            #by calculating from the raw data
+        for i in range(len(ff.Table)):
+            key = basename + '-' + str(i)
+            self.Data.update ({key :{"data": ff.Table[i]}})
+            #Add Basename
+            self.Data[key].update({"basename" : basename + '-' + str(i)})
+            #Add Potential
+            #try:
+                #by reading the .pfr file 
+                #pfrfile = os.path.splitext(filename)[0]+'.pfr'
+                #potential = mod.pfr.potential(pfrfile)
+                #ScanType = mod.pfr.scantype(pfrfile)
+                #if ScanType == 0:
+                #self.Data[key].update({"potential" : float(potential)})
+            #except:
+                #by calculating from the raw data
             av = 0
             for E in self.Data[key]["data"]:
                 av = av + float(E[3])
             potential = av/len(self.Data[key]["data"])
-            potential = round(potential,3)
+            potential = round(potential,2)
             self.Data[key].update({"potential" : potential})
             
-        #Add fitting Data
-        self.Data[key].update({"fit" : ff.simpleFit()})
+            #Add fitting Data
+            self.Data[key].update({"fit" : ff.simpleFit(ff.Table[i])})
 
             
         
@@ -57,6 +62,7 @@ class analyse:
         counter = 0
         try:
             for key in self.Data:
+                print (key)
                 ff = fra.Data()
                 ff.setData(self.Data[key]["data"])
                 ff.saveP00(self.Path + '/'+ subdir + '/' + self.Data[key]["basename"]+'.P00') 
@@ -143,9 +149,9 @@ if __name__ == '__main__':
     p = analyse()
     #p.setFilelist('H:/Data/EIS/test')
     p.openFile(r'H:/Data/EIS/test/-200MV.dfr')
-    p.openFile(r'H:/Data/EIS/test/100MV.dfr')
-    p.openFile(r'H:/Data/EIS/test/300MV.dfr')
-    p.makeP00s('Data/EIS/test/P00')
+    #p.openFile(r'H:/Data/EIS/test/100MV.dfr')
+    #p.openFile(r'H:/Data/EIS/test/300MV.dfr')
+    p.makeP00s(r'Data/EIS/test/P00')
     #p.makeImpTable(0.196)
     #p.makeMottSchottky(1)
 

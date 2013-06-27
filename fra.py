@@ -54,13 +54,13 @@ class Data:
     def setData(self, table):
         self.Table = table
 
-    def simpleFit(self):
+    def simpleFit(self, table):
        
         flist = []
         zlist = []
         
         import math
-        for i in self.Table:
+        for i in table:
             flist.append((float(i[0])))
             zlist.append((math.sqrt(float(i[1])**2+float(i[2])**2)))
         f = np.array(flist)
@@ -78,8 +78,8 @@ class Data:
 if __name__ == '__main__':
     a = Data()
     a.openFile(r'H:\Data\EIS\test\0MV.pfr')
-    #print (a.Table)
-    a.simpleFit()
+    print (a.Table)
+    print(a.simpleFit(a.Table[0]))
 
 
 
